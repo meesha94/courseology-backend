@@ -14,6 +14,11 @@ public class CourseController {
     @Autowired
     private CourseService courseService;
 
+    @ExceptionHandler
+    public ResponseEntity<String> handleExceptions(CourseNotFoundException exception) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
+    }
+
     // CREATE
 
     @PostMapping("/course")
